@@ -1,6 +1,0 @@
-#maven build 
-.classpath
-*/bin/
-*.class
-*.iml
-*~
