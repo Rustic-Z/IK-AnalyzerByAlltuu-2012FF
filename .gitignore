@@ -1,7 +1,9 @@
 #maven build 
 .classpath
 */bin/
+bin/*
 *.class
 *.iml
 *~
-#*.settings/
+*.settings/
+/bin/
