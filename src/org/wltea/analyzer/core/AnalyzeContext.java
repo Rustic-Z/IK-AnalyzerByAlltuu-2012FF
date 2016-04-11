@@ -110,6 +110,15 @@ class AnalyzeContext {
     int getBufferOffset(){
     	return this.buffOffset;
     }
+    
+    /**
+     * @author zhangchao by 2016.04.11
+     * 以便子分词器可以拿到上下文配置做相关判断
+     * @return Configuration
+     */
+    Configuration getCfg() {
+    	return this.cfg;
+    }
 	
     /**
      * 根据context的上下文情况，填充segmentBuff 

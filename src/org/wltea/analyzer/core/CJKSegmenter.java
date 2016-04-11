@@ -83,8 +83,18 @@ class CJKSegmenter implements ISegmenter {
 			 * 另外判断该字是否为词前缀进行二次成词匹配输出
 			 * @author zhangchao 2016.04.09
 			 */
-			Lexeme newLexeme = new Lexeme(context.getBufferOffset() , context.getCursor() , 1 , Lexeme.TYPE_CNWORD);
-			context.addLexeme(newLexeme);
+			Lexeme newLexeme = null;
+			//若为智能切分，则做首字成词判断；最细粒度切分则不做首字成词判断，直接输出。
+			if (context.getCfg().useSmart()) {
+				if (singleCharHit.isMatch()) {
+					newLexeme = new Lexeme(context.getBufferOffset() , context.getCursor() , 1 , Lexeme.TYPE_CNWORD);
+					context.addLexeme(newLexeme);
+				}
+			} else {
+				newLexeme = new Lexeme(context.getBufferOffset() , context.getCursor() , 1 , Lexeme.TYPE_CNWORD);
+				context.addLexeme(newLexeme);
+			}
+			//首字同时也是词前缀
 			if (singleCharHit.isPrefix()) {
 				//前缀匹配则放入hit列表
 				this.tmpHits.add(singleCharHit);
